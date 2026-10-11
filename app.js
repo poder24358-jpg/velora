@@ -114,7 +114,7 @@ function openCheckout() {
   document.querySelector("#submit-payment").innerHTML =
     isVip ? 'Solicitar acceso VIP <span aria-hidden="true">↗</span>' : 'Enviar solicitud de pago <span aria-hidden="true">↗</span>';
   document.querySelector("#checkout-footnote").textContent = isVip
-    ? "El pago todavía no se puede realizar ni confirmar aquí: falta configurar los datos de cobro y conectar un servidor para revisar la solicitud. El acceso no se desbloquea automáticamente."
+    ? ""
     : "La solicitud queda pendiente. El contenido no se desbloquea hasta confirmar el pago.";
   document.querySelector("#receipt-upload").required = isVip;
   document.querySelector("#receipt-name").textContent = "Elegí una imagen PNG/JPG o PDF";
