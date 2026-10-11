@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explorá cinco colecciones públicas o descubrí el contenido exclusivo del área VIP."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Colecciones exclusivas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <div class="announcement">Colecciones exclusivas <span aria-hidden="true">♥</span></div>
+
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="VELORA, inicio">VELORA<span>.</span></a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="ruleta.html">Ruleta</a>
+        <a class="nav-link active" href="#colecciones">Colecciones</a>
+      </nav>
+      <a class="header-collection-link" href="ruleta.html">Probar suerte <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero section-shell" id="inicio">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> CONTENIDO PARA VOS</div>
+          <h1>Elegí tu próxima <span>colección.</span></h1>
+          <p class="hero-description">
+            Explorá las 5 colecciones públicas o entrá al área VIP para descubrir el contenido exclusivo.
+          </p>
+          <a class="button button-primary button-large" href="#colecciones">
+            Ver colecciones <span aria-hidden="true">↘</span>
+          </a>
+          <p class="hero-note"><span aria-hidden="true">✦</span> 5 colecciones públicas</p>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img src="images/portada.jpeg" alt="" />
+          <div class="hero-image-label"><span>01 — 05</span><strong>Encontrá algo nuevo.</strong></div>
+          <span class="hero-sparkle">✳</span>
+        </div>
+      </section>
+
+      <section class="collections-section section-shell" id="colecciones">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-dot"></span> DESCUBRÍ CONTENIDO</div>
+            <h2>Colecciones <span>públicas.</span></h2>
+            <p>Elegí una colección para ver su vista previa y las opciones de desbloqueo.</p>
+          </div>
+          <span class="collection-total">5 colecciones públicas</span>
+        </div>
+        <div class="collections-grid" id="collections-grid" aria-label="Colecciones disponibles"></div>
+      </section>
+
+      <section class="vip-section section-shell" aria-labelledby="vip-title">
+        <div class="vip-lock-icon" aria-hidden="true">⌑</div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span> ÁREA PRIVADA</div>
+        <h2 id="vip-title">Contenido <span>VIP.</span></h2>
+        <p>Las 25 colecciones VIP están ocultas, sin portadas ni vistas previas. Desbloqueá el acceso VIP a todo el contenido con un pago único de $25.000 ARS.</p>
+        <button class="button button-primary button-large" id="unlock-vip" type="button">
+          Desbloquear todo · $25.000 ARS <span aria-hidden="true">↗</span>
+        </button>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand" href="#inicio" aria-label="VELORA, volver al inicio">VELORA<span>.</span></a>
+      <p>Explorá las colecciones o probá suerte en la <a href="ruleta.html">ruleta</a>.</p>
+    </footer>
+
+    <dialog class="modal collection-modal" id="collection-modal" aria-labelledby="collection-title">
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
+      <div id="collection-detail"></div>
+    </dialog>
+
+    <dialog class="image-viewer" id="image-viewer" aria-label="Portada ampliada">
+      <button class="image-viewer-close" type="button" aria-label="Cerrar imagen ampliada">×</button>
+      <img id="image-viewer-image" alt="" />
+    </dialog>
+
+    <dialog class="modal checkout-modal" id="checkout-modal" aria-labelledby="checkout-title">
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
+      <div class="checkout-content">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> <span id="checkout-eyebrow">PAGO</span></div>
+        <h2 id="checkout-title">Desbloqueá tu colección.</h2>
+        <p class="checkout-intro" id="checkout-intro">Revisá los datos de la colección seleccionada antes de continuar.</p>
+        <div class="checkout-summary" id="checkout-summary"></div>
+        <label class="payment-method">
+          <span>Elegí cómo pagar</span>
+          <select id="payment-method">
+            <option value="transfer">Transferencia en pesos argentinos</option>
+            <option value="usdt">USDT · red TRC20</option>
+          </select>
+        </label>
+        <div class="transfer-box payment-instructions" id="transfer-instructions" hidden>
+          <span class="transfer-label">Transferencia en pesos argentinos</span>
+          <p>Transferí <strong id="transfer-amount">$10.000 ARS</strong> desde tu banco o billetera virtual al alias indicado.</p>
+          <div class="transfer-alias-row">
+            <span><small>Alias de transferencia</small><strong id="transfer-alias">v.g.lemon</strong></span>
+            <button class="button button-secondary copy-button" id="copy-transfer-alias" type="button">Copiar alias</button>
+          </div>
+          <p class="transfer-account-details">Lemon Cash · Titular: Alan Robledo</p>
+          <p class="demo-warning">Antes de confirmar, comprobá en tu aplicación bancaria que el alias y el nombre del titular coincidan con los datos que esperás. Esta página no verifica la transferencia ni ha enviado el comprobante.</p>
+        </div>
+        <div class="transfer-box payment-instructions" id="usdt-instructions" hidden>
+          <span class="transfer-label">Pago internacional · 2 USDT</span>
+          <p>Enviá exactamente <strong>2 USDT</strong> a esta dirección, usando únicamente la red <strong>TRC20 (Tron)</strong>.</p>
+          <div class="crypto-address-row">
+            <code id="usdt-address">TMzuyEC4pL5w3JjoHezJwCTXG3ZpbEGquP</code>
+            <button class="button button-secondary copy-button" id="copy-usdt-address" type="button">Copiar dirección</button>
+          </div>
+          <p class="demo-warning">Verificá la red TRC20 y la dirección antes de enviar. Una transferencia por otra red puede perderse. Confirmá que la dirección recibe pagos antes de enviar fondos.</p>
+        </div>
+        <label class="receipt-upload">
+          <span>Subí tu comprobante <small>(PNG, JPG o PDF · máx. 5 MB)</small></span>
+          <input id="receipt-upload" type="file" accept="image/png,image/jpeg,application/pdf" required />
+          <span class="receipt-name" id="receipt-name">Elegí una imagen PNG/JPG o PDF</span>
+        </label>
+        <button class="button button-primary button-full" id="submit-payment" type="button">
+          Enviar comprobante para revisión <span aria-hidden="true">↗</span>
+        </button>
+        <p class="payment-feedback" id="payment-feedback" role="status" aria-live="polite"></p>
+        <p class="checkout-footnote" id="checkout-footnote">El giro se habilita solo después de que el responsable revise y apruebe el pago. El comprobante no se enviará hasta conectar el servidor del sitio.</p>
+        <figure class="payment-image">
+          <img src="images/pago.jpeg" alt="Imagen de pago de VELORA" />
+          <figcaption>Imagen informativa. Verificá los datos del titular en tu banco antes de transferir.</figcaption>
+        </figure>
+      </div>
+    </dialog>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pagá y descubrí tu premio en la ruleta VELORA." />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Ruleta · VELORA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="roulette.js" defer></script>
+  </head>
+  <body class="roulette-page">
+    <div class="announcement">Una oportunidad para ganar <span aria-hidden="true">♥</span></div>
+
+    <header class="site-header">
+      <a class="brand" href="index.html#inicio" aria-label="VELORA, inicio">VELORA<span>.</span></a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a class="nav-link active" href="ruleta.html" aria-current="page">Ruleta</a>
+        <a class="nav-link" href="index.html#colecciones">Colecciones</a>
+      </nav>
+      <a class="header-collection-link" href="index.html#colecciones">Volver a colecciones <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="roulette-section roulette-page-section section-shell" aria-labelledby="roulette-title">
+        <div class="roulette-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> UNA OPORTUNIDAD, TODO EL CONTENIDO</div>
+          <h1 id="roulette-title">Girás y <span>desbloqueás.</span></h1>
+          <p>Primero aboná $3.000 ARS o 2 USDT. El giro solo puede habilitarse después de verificar el pago; adjuntar un comprobante no lo aprueba ni acredita automáticamente.</p>
+          <div class="roulette-price-card">
+            <span>Un giro</span>
+            <strong>$3.000 ARS <span>o</span> 2 USDT</strong>
+          </div>
+          <p class="unlock-status" id="unlock-status" role="status" aria-live="polite">
+            Primero tenés que abonar $3.000 ARS o 2 USDT. Esta página no verifica pagos ni habilita el giro automáticamente.
+          </p>
+          <button class="button button-primary button-large" id="open-payment" type="button">
+            Abonar primero · $3.000 ARS / 2 USDT <span aria-hidden="true">↗</span>
+          </button>
+          <p class="roulette-note">Esta demostración estática no envía comprobantes ni confirma pagos. No hay acreditación automática ni plazo de aprobación de cinco minutos.</p>
+        </div>
+        <div class="wheel-wrap">
+          <span class="wheel-pointer" aria-hidden="true"></span>
+          <svg class="prize-wheel roulette-wheel-svg" id="prize-wheel" viewBox="0 0 360 360" role="img" aria-label="Ruleta con diez casillas de premios">
+            <g id="wheel-slots"></g>
+            <circle class="wheel-hub-ring" cx="180" cy="180" r="37"></circle>
+            <circle class="wheel-hub" cx="180" cy="180" r="31"></circle>
+            <text class="wheel-hub-label" x="180" y="183">VELORA</text>
+          </svg>
+          <button class="wheel-payment-button" id="wheel-payment" type="button" aria-label="VELORA. Primero pagá para participar y ver las opciones de pago."></button>
+        </div>
+        <p class="spin-result" id="payment-result" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand" href="index.html#inicio" aria-label="VELORA, volver al inicio">VELORA<span>.</span></a>
+      <p>Los pagos y la aprobación manual requieren un servidor para funcionar de forma segura.</p>
+    </footer>
+
+    <dialog class="modal checkout-modal" id="payment-modal" aria-labelledby="payment-title">
+      <button class="modal-close" type="button" data-close-modal aria-label="Cerrar">×</button>
+      <div class="checkout-content">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> PAGO DEL GIRO</div>
+        <h2 id="payment-title">Pagá para participar.</h2>
+        <p class="checkout-intro">Primero aboná y verificá los datos. Esta página no recibe ni revisa comprobantes: adjuntar un archivo no confirma el pago ni habilita el giro.</p>
+        <div class="checkout-summary">
+          <div class="checkout-summary-copy">
+            <strong>1 giro de ruleta</strong>
+            <span>Desbloqueo del área VIP y de todo el contenido disponible durante el tiempo del premio.</span>
+          </div>
+          <span class="checkout-amount">$3.000 ARS<br />o 2 USDT</span>
+        </div>
+        <label class="payment-method">
+          <span>Elegí cómo pagar</span>
+          <select id="payment-method">
+            <option value="transfer">Transferencia en pesos argentinos</option>
+            <option value="usdt">USDT · red TRC20</option>
+          </select>
+        </label>
+        <div class="transfer-box payment-instructions" id="transfer-instructions">
+          <span class="transfer-label">Transferencia en pesos argentinos</span>
+          <p>Transferí <strong>$3.000 ARS</strong> desde tu banco o billetera virtual al alias indicado.</p>
+          <div class="transfer-alias-row">
+            <span><small>Alias de transferencia</small><strong id="transfer-alias">v.g.lemon</strong></span>
+            <button class="button button-secondary copy-button" id="copy-transfer-alias" type="button">Copiar alias</button>
+          </div>
+          <p class="transfer-account-details">Lemon Cash · Titular: Alan Robledo</p>
+          <p class="demo-warning">Antes de confirmar, comprobá en tu aplicación bancaria que el alias y el nombre del titular coincidan con los datos que esperás. Esta página no verifica la transferencia ni ha enviado el comprobante.</p>
+        </div>
+        <div class="transfer-box payment-instructions" id="usdt-instructions" hidden>
+          <span class="transfer-label">Pago internacional · 2 USDT</span>
+          <p>Enviá exactamente <strong>2 USDT</strong> a esta dirección, usando únicamente la red <strong>TRC20 (Tron)</strong>.</p>
+          <div class="crypto-address-row">
+            <code id="usdt-address">TMzuyEC4pL5w3JjoHezJwCTXG3ZpbEGquP</code>
+            <button class="button button-secondary copy-button" id="copy-usdt-address" type="button">Copiar dirección</button>
+          </div>
+          <p class="demo-warning">Verificá la red TRC20 y la dirección antes de enviar. Una transferencia por otra red puede perderse. Confirmá que la dirección recibe pagos antes de enviar fondos.</p>
+        </div>
+        <label class="receipt-upload">
+          <span>Subí tu comprobante <small>(PNG, JPG o PDF · máx. 5 MB)</small></span>
+          <input id="receipt-upload" type="file" accept="image/png,image/jpeg,application/pdf" required />
+          <span class="receipt-name" id="receipt-name">Elegí una imagen PNG/JPG o PDF</span>
+        </label>
+        <p class="checkout-footnote">El archivo permanece en este dispositivo. No se envía ni se acredita automáticamente; no hay un plazo de aprobación configurado.</p>
+        <button class="button button-primary button-full" id="submit-payment" type="button">
+          Ver estado del comprobante <span aria-hidden="true">↗</span>
+        </button>
+        <p class="payment-feedback" id="payment-feedback" role="status" aria-live="polite"></p>
+        <figure class="payment-image">
+          <img src="images/pago.jpeg" alt="Imagen de pago de VELORA" />
+          <figcaption>Imagen informativa. Verificá el alias y el titular en tu banco antes de transferir.</figcaption>
+        </figure>
+      </div>
+    </dialog>
+  </body>
+</html>
